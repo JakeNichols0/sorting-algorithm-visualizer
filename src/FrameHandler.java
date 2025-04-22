@@ -12,6 +12,7 @@ public class FrameHandler extends JFrame {
         topText.setBounds(0,0,width,height);
         topText.setBackground(Color.BLACK);
         topText.setForeground(Color.white);
+        topText.setFont(new Font("Times New Roman",Font.PLAIN,18));
         topText.setOpaque(true);
 
         //Frame Initialization
