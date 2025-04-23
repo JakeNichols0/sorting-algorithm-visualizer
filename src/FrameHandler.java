@@ -2,15 +2,14 @@ import javax.swing.*;
 import java.awt.*;
 
 public class FrameHandler extends JFrame {
-    private JFrame frame;
-    private JTextArea topText;
+    private final JFrame frame;
+    private final JTextArea topText;
 
     private final int width=800,height=600;
     FrameHandler(){
         //Label Initialization
         topText = new JTextArea("placeholder");
-        topText.setBounds(0,0,width,height);
-        topText.setBackground(Color.BLACK);
+        topText.setBounds(0,0,width,100);
         topText.setForeground(Color.white);
         topText.setFont(new Font("Times New Roman",Font.PLAIN,18));
         topText.setOpaque(true);
@@ -22,17 +21,28 @@ public class FrameHandler extends JFrame {
         frame.getContentPane().setBackground(Color.BLACK);
         frame.setSize(width,height);
         frame.setResizable(false);
-        frame.setVisible(true);
+
 
         //Add Components
-        frame.add(topText);
+
+        frame.setVisible(true);
     }
 
     public JFrame getFrame() {
         return frame;
     }
+    public int getWidth(){
+        return width;
+    }
+    public int getHeight(){
+        return frame.getContentPane().getHeight();
+    }
+
     public void setText(String text){
         topText.setText(text);
         topText.updateUI();
+    }
+    public void update(){
+        frame.repaint();
     }
 }
