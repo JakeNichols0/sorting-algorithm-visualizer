@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class FrameHandler extends JFrame {
+public class FrameHandler {
     private final JFrame frame;
     private final JTextArea topText;
 
@@ -22,12 +22,13 @@ public class FrameHandler extends JFrame {
         frame.setSize(width,height);
         frame.setResizable(false);
 
-
         //Add Components
 
+        //Visibility
         frame.setVisible(true);
     }
 
+    //Accessors
     public JFrame getFrame() {
         return frame;
     }
@@ -35,7 +36,7 @@ public class FrameHandler extends JFrame {
         return width;
     }
     public int getHeight(){
-        return frame.getContentPane().getHeight();
+        return height;
     }
 
     public void setText(String text){
