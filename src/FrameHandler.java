@@ -3,17 +3,9 @@ import java.awt.*;
 
 public class FrameHandler {
     private final JFrame frame;
-    private final JTextArea topText;
 
     private final int width=800,height=600;
     FrameHandler(){
-        //Label Initialization
-        topText = new JTextArea("placeholder");
-        topText.setBounds(0,0,width,100);
-        topText.setForeground(Color.white);
-        topText.setFont(new Font("Times New Roman",Font.PLAIN,18));
-        topText.setOpaque(true);
-
         //Frame Initialization
         frame = new JFrame();
         frame.setTitle("Sorting Algorithm Visualizer");
@@ -23,7 +15,7 @@ public class FrameHandler {
         frame.setResizable(false);
 
         //Add Components
-
+        frame.add(new Graph(width,height));
         //Visibility
         frame.setVisible(true);
     }
@@ -39,11 +31,8 @@ public class FrameHandler {
         return height;
     }
 
-    public void setText(String text){
-        topText.setText(text);
-        topText.updateUI();
-    }
-    public void update(){
-        frame.repaint();
+    //Mutators
+    public void addComponent(Component c){
+        frame.add(c);
     }
 }

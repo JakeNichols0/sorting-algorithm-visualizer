@@ -9,16 +9,19 @@ public class Graph extends JPanel {
         this.width = width;
         this.height = height;
         this.setBackground(Color.black);
-
         graphImg = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
+        initialize(1);
     }
     //Organization Functions
     public void initialize(int amount){
-        double widthPer = (double)width/amount;
-        double heightPer = (double)height/amount;
-        for(int x=0;x<amount;x++){
-
+        int widthPer = width/amount;
+        int heightPer = height/amount;
+        for(int i=0;i<width;i++){
+            for(int j=0;j<height;j++){
+                graphImg.setRGB(i,j,Color.white.getRGB());
+            }
         }
+        repaint();
     }
     public void shuffle(){
 
@@ -42,5 +45,12 @@ public class Graph extends JPanel {
 
         Graphics2D g2D = (Graphics2D) g;
         g2D.drawImage(graphImg,0,0,null);
+    }
+    private void drawRect(int x, int width, int height){/*Anchored at bottom of screen.*/
+        for(int i = 0; i < height; i++){
+            for(int j = 0; j < width; j++){
+                graphImg.setRGB(x+j,i,Color.white.getRGB());
+            }
+        }
     }
 }
