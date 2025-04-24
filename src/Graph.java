@@ -5,22 +5,28 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 public class Graph extends JPanel {
-    private final int width,height;
+    private final int width,height,amount;
+    public boolean focused = true;
     private final BufferedImage graphImg;
-    public Graph(int width,int height){
+
+    private int[] numberArray;
+
+    public Graph(int width,int height, int amount){
+        this.amount = amount;
         this.width = width;
         this.height = height;
+
         this.setBackground(Color.black);
         graphImg = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
-        initialize(1);
+
+        initialize();
     }
     //Organization Functions
-    public void initialize(int amount){
+    public void initialize(){
         clear();
         int widthPer = width/amount;
-        int heightPer = height/amount;
-        for(int i=0;i<width;i++){
-            drawRect(i,1,(int)(Math.random()*height),Color.white);
+        for(int i=0;i<amount;i++){
+            fillRect(widthPer*i,widthPer,(int)(height*Math.random()),Color.white);
         }
     }
     public void shuffle(){
@@ -44,13 +50,15 @@ public class Graph extends JPanel {
         super.paint(g);
 
         Graphics2D g2D = (Graphics2D) g;
-        update();
+
+        //update(focused);
+
         g2D.drawImage(graphImg,0,0,null);
     }
-    private void drawRect(int x, int width, int height,Color c){/*Anchored at bottom of screen.*/
+    private void fillRect(int x, int width, int height,Color c){/*Anchored at bottom of screen.*/
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
-                graphImg.setRGB(x+j,this.height-i-1,c.getRGB());
+                graphImg.setRGB(x+j,this.height-i-1,c.getRGB());//the actual max is 1 less than the height specified
             }
         }
     }
@@ -61,11 +69,14 @@ public class Graph extends JPanel {
             }
         }
     }
-    public void update(){
+    public void update(boolean focused){
         //TODO: do update functions
-        //place holder for now
-        clear();
-        initialize(1);
+        //placeholder for now
+        if(focused){//this is really a performance draw
+            clear();
+            initialize();
+        }
+
         repaint();
     }
 }

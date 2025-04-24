@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowFocusListener;
 
 public class FrameHandler {
     private final JFrame frame;
@@ -15,9 +17,22 @@ public class FrameHandler {
         frame.setResizable(false);
 
         //Add Components
-        frame.add(new Graph(width,height));
+        Graph g = new Graph(width,height,width);
+        frame.add(g);
         //Visibility
         frame.setVisible(true);
+
+        frame.addWindowFocusListener(new WindowFocusListener() {
+            @Override
+            public void windowGainedFocus(WindowEvent e) {
+                g.focused = true;
+            }
+
+            @Override
+            public void windowLostFocus(WindowEvent e) {
+                g.focused=false;
+            }
+        });
     }
 
     //Accessors
@@ -35,4 +50,5 @@ public class FrameHandler {
     public void addComponent(Component c){
         frame.add(c);
     }
+
 }
