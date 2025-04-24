@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 public class Graph extends JPanel {
@@ -14,14 +16,12 @@ public class Graph extends JPanel {
     }
     //Organization Functions
     public void initialize(int amount){
+        clear();
         int widthPer = width/amount;
         int heightPer = height/amount;
         for(int i=0;i<width;i++){
-            for(int j=0;j<height;j++){
-                graphImg.setRGB(i,j,Color.white.getRGB());
-            }
+            drawRect(i,1,(int)(Math.random()*height),Color.white);
         }
-        repaint();
     }
     public void shuffle(){
 
@@ -44,13 +44,28 @@ public class Graph extends JPanel {
         super.paint(g);
 
         Graphics2D g2D = (Graphics2D) g;
+        update();
         g2D.drawImage(graphImg,0,0,null);
     }
-    private void drawRect(int x, int width, int height){/*Anchored at bottom of screen.*/
+    private void drawRect(int x, int width, int height,Color c){/*Anchored at bottom of screen.*/
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
-                graphImg.setRGB(x+j,i,Color.white.getRGB());
+                graphImg.setRGB(x+j,i,c.getRGB());
             }
         }
+    }
+    public void clear(){
+        for(int i=0;i<width;i++){
+            for(int j=0;j<height;j++){
+                graphImg.setRGB(i,j,Color.black.getRGB());//static screen lmao
+            }
+        }
+    }
+    public void update(){
+        //TODO: do update functions
+        //place holder for now
+        clear();
+        initialize(1);
+        repaint();
     }
 }
