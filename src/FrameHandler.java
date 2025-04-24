@@ -5,10 +5,14 @@ import java.awt.event.WindowFocusListener;
 
 public class FrameHandler {
     private final JFrame frame;
+    public int width,height;
+    public Rectangle bounds;
+    private boolean focused = true;
 
-    private final int width=800,height=600;
-    FrameHandler(){
-        //Frame Initialization
+    FrameHandler(int width,int height, int amount){
+        this.width = width;
+        this.height = height;
+        
         frame = new JFrame();
         frame.setTitle("Sorting Algorithm Visualizer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -16,39 +20,24 @@ public class FrameHandler {
         frame.setSize(width,height);
         frame.setResizable(false);
 
-        //Add Components
-        Graph g = new Graph(width,height,width);
-        frame.add(g);
-        //Visibility
         frame.setVisible(true);
+        this.bounds = frame.getContentPane().getBounds();
+
+        frame.add(new Graph(bounds.width,bounds.height,amount));
+
+        frame.revalidate();
+        frame.repaint();
 
         frame.addWindowFocusListener(new WindowFocusListener() {
             @Override
             public void windowGainedFocus(WindowEvent e) {
-                g.focused = true;
+                focused = true;
             }
 
             @Override
             public void windowLostFocus(WindowEvent e) {
-                g.focused=false;
+                focused=false;
             }
         });
     }
-
-    //Accessors
-    public JFrame getFrame() {
-        return frame;
-    }
-    public int getWidth(){
-        return width;
-    }
-    public int getHeight(){
-        return height;
-    }
-
-    //Mutators
-    public void addComponent(Component c){
-        frame.add(c);
-    }
-
 }

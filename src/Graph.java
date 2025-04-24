@@ -24,9 +24,10 @@ public class Graph extends JPanel {
     //Organization Functions
     public void initialize(){
         clear();
-        int widthPer = width/amount;
-        for(int i=0;i<amount;i++){
-            fillRect(widthPer*i,widthPer,(int)(height*Math.random()),Color.white);
+        double widthPer = (double)width/amount;
+
+        for(int i=0;i<amount;i++) {
+            fillRect((int) (widthPer * i), (int) Math.ceil(widthPer), (int) (((double) (i + 1) / amount) * height), Color.white);
         }
     }
     public void shuffle(){
