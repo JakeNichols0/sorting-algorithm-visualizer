@@ -50,7 +50,7 @@ public class Graph extends JPanel {
     private void drawRect(int x, int width, int height,Color c){/*Anchored at bottom of screen.*/
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
-                graphImg.setRGB(x+j,i,c.getRGB());
+                graphImg.setRGB(x+j,this.height-i-1,c.getRGB());
             }
         }
     }
