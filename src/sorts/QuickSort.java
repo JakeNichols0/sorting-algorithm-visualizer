@@ -24,7 +24,7 @@ public class QuickSort extends Sort{
         for(int j=low;j<=high-1;j++){
             if(array[j]<pivot){
                 i++;
-                super.waitCursor(i);
+                waitCursor(i);
                 g.swap(i,j);
             }
         }

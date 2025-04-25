@@ -58,10 +58,8 @@ public class Window {
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            if(focused){
-                frame.repaint();
-                mainGraph.repaint();
-            }
+            frame.repaint();
+            mainGraph.repaint();
         }
     }
     public JFrame getFrame(){

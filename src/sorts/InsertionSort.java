@@ -12,7 +12,7 @@ public class InsertionSort extends Sort{
             int key = array[i];
             int j = i-1;
             while(j>=0&&array[j]>key){
-                super.waitCursor(j);
+                waitCursor(j);
                 g.set(j+1,array[j]);
                 j--;
             }

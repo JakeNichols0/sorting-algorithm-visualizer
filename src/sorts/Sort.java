@@ -16,6 +16,10 @@ public class Sort {
     }
     public void sort(){}
     public void waitCursor(int idx){
+        int thickness = 3;
+        for(int i=0;i<thickness;i++){
+
+        }
         g.redrawRect(lastIdx, Color.white);
         g.redrawRect(idx, Color.red);
         lastIdx = idx;
