@@ -15,34 +15,42 @@ public class Graph extends JPanel {
         this.amount = amount;
         this.width = width;
         this.height = height;
+        numberArray = new int[amount];
+
 
         this.setBackground(Color.black);
         graphImg = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
 
         initialize();
     }
-    //Organization Functions
-    public void initialize(){
+    private void initialize(){
         clear();
         double widthPer = (double)width/amount;
 
         for(int i=0;i<amount;i++) {
-            fillRect((int) (widthPer * i), (int) Math.ceil(widthPer), (int) (((double) (i + 1) / amount) * height), Color.white);
+            numberArray[i] = (int) (((double) (i + 1) / amount) * height);
+            fillRect((int) (widthPer * i), (int) Math.ceil(widthPer), numberArray[i], Color.white);
         }
     }
     public void shuffle(){
-
+        for(int i=0;i< numberArray.length;i++){
+            swap(i,(int)(Math.random()*numberArray.length));
+        }
     }
 
     //Sort Functions
     public void set(int a, int value){
-
+        numberArray[a]=value;
     }
     public void swap(int a, int b){
-
+        int temp = numberArray[a];
+        numberArray[a]=numberArray[b];
+        numberArray[b]=temp;
     }
 
     public int compare(int a, int b){
+        if(a>b){return 1;}
+        else if(a<b){return -1;}
         return 0;
     }
 
@@ -56,12 +64,16 @@ public class Graph extends JPanel {
 
         g2D.drawImage(graphImg,0,0,null);
     }
-    private void fillRect(int x, int width, int height,Color c){/*Anchored at bottom of screen.*/
+    private void fillRect(int x, int width, int height, Color c){
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
-                graphImg.setRGB(x+j,this.height-i-1,c.getRGB());//the actual max is 1 less than the height specified
+                graphImg.setRGB(x+j,this.height-i-1,c.getRGB());
             }
         }
+    }
+    private void redrawRect(int index, int width, Color c){
+        double widthPer = (double)width/amount;
+        fillRect(index*(int)widthPer,(int)widthPer,numberArray[index],c);
     }
     public void clear(){
         for(int i=0;i<width;i++){
@@ -70,14 +82,8 @@ public class Graph extends JPanel {
             }
         }
     }
-    public void update(boolean focused){
+    public void update(){
         //TODO: do update functions
-        //placeholder for now
-        if(focused){//this is really a performance draw
-            clear();
-            initialize();
-        }
-
         repaint();
     }
 }

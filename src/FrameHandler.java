@@ -25,9 +25,6 @@ public class FrameHandler {
 
         frame.add(new Graph(bounds.width,bounds.height,amount));
 
-        frame.revalidate();
-        frame.repaint();
-
         frame.addWindowFocusListener(new WindowFocusListener() {
             @Override
             public void windowGainedFocus(WindowEvent e) {
