@@ -9,13 +9,13 @@ public class Sort {
     Graph g;
     int lastIdx = 0;
     double delay;
-    public Sort(Graph g,int delay){
-        this.g = g;
+    public Sort(int delay, Graph g){
         this.array = g.getArray();
         this.delay = (double)delay/1000;
+        this.g = g;
     }
     public void sort(){}
-    private void waitCursor(int idx){
+    public void waitCursor(int idx){
         g.redrawRect(lastIdx, Color.white);
         g.redrawRect(idx, Color.red);
         lastIdx = idx;

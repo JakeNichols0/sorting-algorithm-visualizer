@@ -1,5 +1,8 @@
 package root;
 
+import sorts.BubbleSort;
+import sorts.Sort;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
@@ -10,7 +13,7 @@ public class Window {
     public int width,height;
     private boolean focused = true;
 
-    private final Graph mainGraph;
+    public final Graph mainGraph;
 
     public Window(Rectangle dimensions, int amount){
         this.width = dimensions.width;
@@ -25,7 +28,9 @@ public class Window {
         frame.setVisible(true);
 
         Rectangle bounds = frame.getContentPane().getBounds();
-        this.mainGraph = new Graph(bounds.width,bounds.height,amount);
+        Graph g = new Graph(bounds.width,bounds.height,amount);
+
+        this.mainGraph = g;
 
         frame.add(mainGraph);
 
