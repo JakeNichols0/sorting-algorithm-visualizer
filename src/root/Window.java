@@ -1,19 +1,20 @@
+package root;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 
-public class FrameHandler {
+public class Window {
     private final JFrame frame;
     public int width,height;
-    public Rectangle bounds;
     private boolean focused = true;
 
     private final Graph mainGraph;
 
-    FrameHandler(int width,int height, int amount){
-        this.width = width;
-        this.height = height;
+    public Window(Rectangle dimensions, int amount){
+        this.width = dimensions.width;
+        this.height = dimensions.height;
         
         frame = new JFrame();
         frame.setTitle("Sorting Algorithm Visualizer");
@@ -21,9 +22,9 @@ public class FrameHandler {
         frame.getContentPane().setBackground(Color.BLACK);
         frame.setSize(width,height);
         frame.setResizable(false);
-
         frame.setVisible(true);
-        this.bounds = frame.getContentPane().getBounds();
+
+        Rectangle bounds = frame.getContentPane().getBounds();
         this.mainGraph = new Graph(bounds.width,bounds.height,amount);
 
         frame.add(mainGraph);

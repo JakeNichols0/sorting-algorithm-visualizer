@@ -1,14 +1,13 @@
+package root;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 public class Graph extends JPanel {
     private final int width,height,amount;
     public boolean focused = true;
     private final BufferedImage graphImg;
-
     private int[] numberArray;
 
     public Graph(int width,int height, int amount){
@@ -16,9 +15,6 @@ public class Graph extends JPanel {
         this.width = width;
         this.height = height;
         numberArray = new int[amount];
-
-
-        this.setBackground(Color.black);
         graphImg = new BufferedImage(width,height,BufferedImage.TYPE_INT_RGB);
 
         initialize();
@@ -39,7 +35,7 @@ public class Graph extends JPanel {
         }
     }
 
-    //Sort Functions
+    //sorts.Sort Functions
     public void set(int a, int value){
         numberArray[a]=value;
     }
@@ -56,6 +52,9 @@ public class Graph extends JPanel {
         else if(a<b){return -1;}
         return 0;
     }
+    public int[] getArray(){
+        return numberArray;
+    }
 
     //Graphical Functions
     public void paint(Graphics g){
@@ -67,14 +66,14 @@ public class Graph extends JPanel {
 
         g2D.drawImage(graphImg,0,0,null);
     }
-    private void fillRect(int x, int width, int height, Color c){
+    public void fillRect(int x, int width, int height, Color c){
         for(int i = 0; i < height; i++){
             for(int j = 0; j < width; j++){
                 graphImg.setRGB(x+j,this.height-i-1,c.getRGB());
             }
         }
     }
-    private void redrawRect(int index, Color c){
+    public void redrawRect(int index, Color c){
         double widthPer = (double)width/amount;
         fillRect(index*(int)widthPer,(int)widthPer,height,Color.BLACK);
         fillRect(index*(int)widthPer,(int)widthPer,numberArray[index],c);
