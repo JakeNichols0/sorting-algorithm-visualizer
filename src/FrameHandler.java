@@ -9,6 +9,8 @@ public class FrameHandler {
     public Rectangle bounds;
     private boolean focused = true;
 
+    private final Graph mainGraph;
+
     FrameHandler(int width,int height, int amount){
         this.width = width;
         this.height = height;
@@ -22,8 +24,14 @@ public class FrameHandler {
 
         frame.setVisible(true);
         this.bounds = frame.getContentPane().getBounds();
+        this.mainGraph = new Graph(bounds.width,bounds.height,amount);
 
-        frame.add(new Graph(bounds.width,bounds.height,amount));
+        frame.add(mainGraph);
+
+        frame.revalidate();
+        frame.repaint();
+
+        Thread loop = new Thread(this::mainLoop); loop.start();
 
         frame.addWindowFocusListener(new WindowFocusListener() {
             @Override
@@ -36,5 +44,16 @@ public class FrameHandler {
                 focused=false;
             }
         });
+    }
+    private void mainLoop(){
+        while(frame.isActive()){
+            try{
+                Thread.sleep(1000/60);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            frame.repaint();
+            mainGraph.repaint();
+        }
     }
 }

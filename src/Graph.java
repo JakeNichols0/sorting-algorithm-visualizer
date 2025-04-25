@@ -31,9 +31,10 @@ public class Graph extends JPanel {
             numberArray[i] = (int) (((double) (i + 1) / amount) * height);
             fillRect((int) (widthPer * i), (int) Math.ceil(widthPer), numberArray[i], Color.white);
         }
+        shuffle();
     }
     public void shuffle(){
-        for(int i=0;i< numberArray.length;i++){
+        for(int i=0;i < numberArray.length;i++){
             swap(i,(int)(Math.random()*numberArray.length));
         }
     }
@@ -46,6 +47,8 @@ public class Graph extends JPanel {
         int temp = numberArray[a];
         numberArray[a]=numberArray[b];
         numberArray[b]=temp;
+        redrawRect(a,Color.white);
+        redrawRect(b,Color.white);
     }
 
     public int compare(int a, int b){
@@ -60,7 +63,7 @@ public class Graph extends JPanel {
 
         Graphics2D g2D = (Graphics2D) g;
 
-        //update(focused);
+        //shuffle();
 
         g2D.drawImage(graphImg,0,0,null);
     }
@@ -71,8 +74,9 @@ public class Graph extends JPanel {
             }
         }
     }
-    private void redrawRect(int index, int width, Color c){
+    private void redrawRect(int index, Color c){
         double widthPer = (double)width/amount;
+        fillRect(index*(int)widthPer,(int)widthPer,height,Color.BLACK);
         fillRect(index*(int)widthPer,(int)widthPer,numberArray[index],c);
     }
     public void clear(){
@@ -81,9 +85,5 @@ public class Graph extends JPanel {
                 graphImg.setRGB(i,j,Color.black.getRGB());//static screen lmao
             }
         }
-    }
-    public void update(){
-        //TODO: do update functions
-        repaint();
     }
 }
