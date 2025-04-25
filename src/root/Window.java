@@ -52,14 +52,16 @@ public class Window {
         });
     }
     private void mainLoop(){
-        while(frame.isActive()){
+        while(frame.isVisible()){
             try{
                 Thread.sleep(1000/60);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
-            frame.repaint();
-            mainGraph.repaint();
+            if(focused){
+                frame.repaint();
+                mainGraph.repaint();
+            }
         }
     }
     public JFrame getFrame(){
