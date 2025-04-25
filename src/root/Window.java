@@ -62,4 +62,7 @@ public class Window {
             mainGraph.repaint();
         }
     }
+    public JFrame getFrame(){
+        return frame;
+    }
 }

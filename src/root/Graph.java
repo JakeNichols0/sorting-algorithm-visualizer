@@ -27,12 +27,6 @@ public class Graph extends JPanel {
             numberArray[i] = (int) (((double) (i + 1) / amount) * height);
             fillRect((int) (widthPer * i), (int) Math.ceil(widthPer), numberArray[i], Color.white);
         }
-        shuffle();
-    }
-    public void shuffle(){
-        for(int i=0;i < numberArray.length;i++){
-            swap(i,(int)(Math.random()*numberArray.length));
-        }
     }
 
     //sorts.Sort Functions
@@ -61,8 +55,6 @@ public class Graph extends JPanel {
         super.paint(g);
 
         Graphics2D g2D = (Graphics2D) g;
-
-        //shuffle();
 
         g2D.drawImage(graphImg,0,0,null);
     }

@@ -5,8 +5,21 @@ import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        Window window = new Window(new Rectangle(800,600),800);
-        Sort bubble = new BubbleSort(100,window.mainGraph);
-        bubble.sort();
+        int amount = 1080;
+        int delay = 2500;
+        Window window = new Window(new Rectangle(1080,720),amount);
+        Sort sort = new QuickSort(delay,window.mainGraph);
+        while (window.getFrame().isActive()){
+            sort.shuffle();
+            sort.setDelay(delay);
+            try{
+                Thread.sleep(750);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            sort.sort();
+            sort.setDelay(1000);
+        }
+
     }
 }

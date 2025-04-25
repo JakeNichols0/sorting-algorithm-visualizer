@@ -8,7 +8,7 @@ public class Sort {
     int[] array;
     Graph g;
     int lastIdx = 0;
-    double delay;
+    public double delay;
     public Sort(int delay, Graph g){
         this.array = g.getArray();
         this.delay = (double)delay/1000;
@@ -24,6 +24,15 @@ public class Sort {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void shuffle(){
+        for(int i=0;i < array.length;i++){
+            waitCursor(i);
+            g.swap(i,(int)(Math.random()*array.length));
+        }
+    }
+    public void setDelay(int delay){
+        this.delay = (double)delay/1000;
     }
 
 }
