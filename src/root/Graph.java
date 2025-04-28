@@ -73,7 +73,7 @@ public class Graph extends JPanel {
     public void clear(){
         for(int i=0;i<width;i++){
             for(int j=0;j<height;j++){
-                graphImg.setRGB(i,j,Color.black.getRGB());//static screen lmao
+                graphImg.setRGB(i,j,Color.black.getRGB());
             }
         }
     }

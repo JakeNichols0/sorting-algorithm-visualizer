@@ -16,8 +16,8 @@ public class CombSort extends Sort{
             swapped = false;
             for(int i=0;i<n-gap;i++){
                 if(array[i]>array[i+gap]){
-                    waitCursor(i);
                     g.swap(i,i+gap);
+                    waitCursor(i);
                     swapped = true;
                 }
             }

@@ -17,11 +17,17 @@ public class Sort {
     public void sort(){}
     public void waitCursor(int idx){
         int thickness = 3;
-        for(int i=0;i<thickness;i++){
-
+        thickness/=2;
+        for(int i=lastIdx-thickness;i<=lastIdx+thickness;i++){
+            if(i>=0&&i<array.length){
+                g.redrawRect(i,Color.white);
+            }
         }
-        g.redrawRect(lastIdx, Color.white);
-        g.redrawRect(idx, Color.red);
+        for(int i=idx-thickness;i<=idx+thickness;i++){
+            if(i>=0&&i<array.length){
+                g.redrawRect(i,Color.red);
+            }
+        }
         lastIdx = idx;
         try{
             Thread.sleep((long) delay);
@@ -33,6 +39,24 @@ public class Sort {
         for(int i=0;i < array.length;i++){
             waitCursor(i);
             g.swap(i,(int)(Math.random()*array.length));
+        }
+    }
+    public void endSort(){
+        for(int i=0; i<array.length;i++){
+            g.redrawRect(i,Color.green);
+            try {
+                Thread.sleep((long)delay);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        for(int i=0;i< array.length;i++){
+            g.redrawRect(i,Color.white);
+            try {
+                Thread.sleep((long)delay);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
     public void setDelay(int delay){

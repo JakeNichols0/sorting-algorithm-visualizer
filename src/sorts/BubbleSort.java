@@ -2,6 +2,8 @@ package sorts;
 
 import root.Graph;
 
+import java.awt.*;
+
 public class BubbleSort extends Sort {
     public BubbleSort(int delay,Graph g){
         super(delay,g);
@@ -15,7 +17,7 @@ public class BubbleSort extends Sort {
             swapped=false;
             for(int j=0;j<n-i-1;j++){
                 if(array[j]>array[j+1]){
-                    waitCursor(j );
+                    waitCursor(j);
                     g.swap(j,j+1);
                     swapped=true;
                 }
