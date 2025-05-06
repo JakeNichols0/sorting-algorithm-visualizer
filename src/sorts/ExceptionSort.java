@@ -36,6 +36,11 @@ public class ExceptionSort extends Sort {
     }
 
     private void causeStackOverflow() {
+        byte colinSucks = new Byte("69");
+        if(Math.random() == 4) {
+            return;
+        }
+        System.out.println(colinSucks);
         causeStackOverflow();
     }
 }
